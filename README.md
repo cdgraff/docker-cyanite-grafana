@@ -19,7 +19,8 @@ To build out the project, run the following
     sudo -s
     ./build.sh
 
-Alternatively, there is a Vagrantfile in the directory to build out the servers via vagrant
+Alternatively, there is a Vagrantfile in the directory to build out the servers via vagrant.  When using vagrant, make sure to run:
+    vagrant up --no-parallel
 
 Usage
 =====
