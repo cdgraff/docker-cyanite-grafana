@@ -5,12 +5,12 @@ Sets up various containers to provide a means of storing metrics via graphite in
 This uses cyanite, developed by Pierre-Yves Ritschard and graphite-cyanite/graphite-api developed by Bruno Renié
 
 To use this, you will need the following on your host:
- - [virtualbox]: https://www.virtualbox.org/
- - [vagrant]: https://www.vagrantup.com/
- - For Linux, [docker]: https://www.docker.com/
- - For Windows / MacOS, [boot2docker]: http://boot2docker.io/
+- [virtualbox]
+- [vagrant]
+- [docker] - For Linux
+- [boot2docker] - For Windows / MacOSX
 
-This has been tested on Ubuntu and RedHat variants.  See below for links on how to get docker / boot2docker running on your system.
+This has been tested on Ubuntu and RedHat variants.  For getting Boot2Docker running on MacOSX, see [How to use Docker on MacOSX]
 
 Description Of The Components
 -----------------------------
@@ -42,4 +42,8 @@ Run ./test.sh to generate some test metrics - 1, 5 and 15 minute load averages
 [graphite-api]: https://github.com/brutasse/graphite-api
 [grafana]: http://grafana.org/
 [cassandra]: http://cassandra.apache.org/
+[virtualbox]: https://www.virtualbox.org/
+[vagrant]: https://www.vagrantup.com/
+[docker]: https://www.docker.com/
+[boot2docker]: http://boot2docker.io/
 [How to use Docker on MacOSX]: http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide
