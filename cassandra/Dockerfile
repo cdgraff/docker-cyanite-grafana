@@ -1,14 +1,16 @@
 FROM centos:centos6
-MAINTAINER Mike Brannigan <mikejbrannigan@gmail.com>
+MAINTAINER Alejandro Ferrari <support@wmconsulting.info>
+
+RUN cat /etc/resolv.conf
 
 # Cassandra Repo
 COPY files/etc/yum.repos.d/datastax.repo /etc/yum.repos.d/datastax.repo
 
 # Update the stuff
-#RUN yum update -y --quiet
+RUN yum update -y --quiet
 
 # Install EPEL
-RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN rpm -Uvh --quiet --force http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 # Install wget
 RUN yum install -y --quiet wget
@@ -19,7 +21,7 @@ RUN wget --quiet --no-check-certificate --no-cookies --header "Cookie: oraclelic
 RUN rpm -Uvh --quiet jdk-7u67-linux-x64.rpm
 
 # Install cassandra
-RUN yum install -y --quiet dsc20 cassandra=2.0.11
+RUN yum install -y --quiet dsc20 cassandra=2.0.14
 
 # Expose /var/log
 VOLUME [ "/var/log" ]

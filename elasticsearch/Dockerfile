@@ -1,5 +1,5 @@
 FROM centos:centos6
-MAINTAINER Mike Brannigan <mikejbrannigan@gmail.com>
+MAINTAINER Alejandro Ferrari <support@wmconsulting.info>
 
 # Setup elasticsearch repo
 RUN rpm --quiet --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch
@@ -11,7 +11,7 @@ COPY files/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/elasticsearch.rep
 #RUN yum update -y --quiet 
 
 # Install EPEL
-RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN rpm -Uvh --quiet --force http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 # Install wget and which
 RUN yum install -y --quiet wget
