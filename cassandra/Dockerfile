@@ -1,27 +1,21 @@
-FROM centos:centos6
+FROM ubuntu:14.04
 MAINTAINER Alejandro Ferrari <support@wmconsulting.info>
 
-RUN cat /etc/resolv.conf
+# Install tools
+RUN sudo apt-get -y install curl software-properties-common
 
 # Cassandra Repo
-COPY files/etc/yum.repos.d/datastax.repo /etc/yum.repos.d/datastax.repo
+RUN echo "deb http://debian.datastax.com/community stable main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+RUN curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
 
-# Update the stuff
-RUN yum update -y --quiet
-
-# Install EPEL
-RUN rpm -Uvh --quiet --force http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-
-# Install wget
-RUN yum install -y --quiet wget
-
-# Install JVM
-WORKDIR /tmp
-RUN wget --quiet --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.rpm
-RUN rpm -Uvh --quiet jdk-7u67-linux-x64.rpm
+# Install JVM7
+RUN add-apt-repository ppa:webupd8team/java
+RUN apt-get -y update
+RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN apt-get -y install oracle-java7-installer
 
 # Install cassandra
-RUN yum install -y --quiet dsc20 cassandra=2.0.14
+RUN apt-get -y install dsc20=2.0.14-1 cassandra=2.0.14
 
 # Expose /var/log
 VOLUME [ "/var/log" ]
